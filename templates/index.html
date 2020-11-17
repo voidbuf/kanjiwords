@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanji Frequency Dictionary - search frequent words by Kanji</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+          Kanji Frequency Dictionary
+        </a>
+        <form class="form-inline" action="/search" method="GET">
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text" name="kanji" class="form-control" id="inputKanji" placeholder="type the kanji...">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Search words</button>
+        </form>
+    </nav>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Find common words containing Kanji</h1>
+            <p class="lead">This app displays the words containing the character (usually Kanji) provided as input. It searches through a list of the 14,768 most common Japanese words.</p>
+            <hr class="my-4">
+            <p>Below are links to search some very common Kanji, or you can use the search bar on top right to input your own.</p>
+            <a class="btn btn-secondary btn-lg" href="/search?kanji=人" role="button">Search for 人</a>
+            <a class="btn btn-secondary btn-lg" href="/search?kanji=日" role="button">Search for 日</a>
+            <a class="btn btn-secondary btn-lg" href="/search?kanji=学" role="button">Search for 学</a>
+            <a class="btn btn-secondary btn-lg" href="/search?kanji=明" role="button">Search for 明</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                This app hopefully provides all the words that you will ever need to know for a particular Kanji, in order to be fluent. You can prioritize the most common ones first, as they appear in descending frequency order.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                Column "Ranking" of the resulted table indicates the position in the top 14,768 most common Japanese words. The source of the ranking is the list created by the University of Leeds. The link to the original ranking is <a href="http://corpus.leeds.ac.uk/frqc/internet-jp.num" target="_blank">here</a> and it contains 15000 words, out of which I had filtered out 232 of them, since they are either symbols or Latin characters.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

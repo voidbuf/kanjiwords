@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanji Frequency Dictionary - search frequent words by Kanji</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+          Kanji Frequency Dictionary
+        </a>
+        <form class="form-inline" action="/search" method="GET">
+            <div class="form-group mx-sm-3 mb-2">
+              <input type="text" name="kanji" class="form-control" id="inputKanji" placeholder="type the kanji...">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Search words</button>
+        </form>
+    </nav>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                You can press each Word to go to a page with its reading and example sentences, or use the Yomichan browser extension. This feature is still WIP.
+            </div>
+        </div>
+    <h3>Found {{ len .KanjiSlice }} results</h3>
+    {{ if ne (len .KanjiSlice) 0 }}
+    <table class="table">
+        <tr>
+            <th>Index</th>
+            <th>Word</th>
+            <th>Ranking</th>
+        </tr>
+        {{ range $i, $e:= .KanjiSlice }}
+        <tr>
+            <td>{{ inc $i }}</td>
+            <td><a href="https://tangorin.com/sentences?search={{ $e.Kanji }}" target="_blank" style="color:inherit;">{{ $e.Kanji }}</a></td>
+            <td>{{ $e.Freq }}</td>
+        </tr>
+        {{ end }}
+    </table>
+    {{ end }}
+    </div>
+</body>
+</html>
