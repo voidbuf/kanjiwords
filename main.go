@@ -104,8 +104,12 @@ func main() {
 	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.HandleFunc("/", handleIndex)
 	http.HandleFunc("/search", handleSearch)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	log.Println("server listening...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 func handleIndex(w http.ResponseWriter, r *http.Request) {
@@ -153,5 +157,6 @@ func handleSearch(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleFavicon(w http.ResponseWriter, r *http.Request) {
+	log.Println("received request at /favicon.ico")
 	http.ServeFile(w, r, "favicon.ico")
 }
